@@ -1,0 +1,32 @@
+# In this Docker Compose example, we only fire up the services required for local development.
+# This is not advised for production use as it exposes ports to the database insecurely.
+# If you're looking for a production-ready Docker Compose file, check out the `traefik.yml` file.
+
+services:
+
+
+
+  # Chrome Browser (for printing and previews)
+  chrome:
+    image: ghcr.io/browserless/chromium:latest
+    restart: unless-stopped
+    env_file:
+      - ../../.env
+    environment:
+      HEALTH: "true"
+      TOKEN: ${CHROME_TOKEN}
+      PROXY_HOST: "chrome"
+      PROXY_PORT: 3000
+      PROXY_SSL: "false"
+
+  # Resume App
+  resumeapp:
+    image: resumeapp
+    restart: unless-stopped
+    env_file:
+      - ../../.env
+    ports:
+      - "3000:3000"
+    depends_on:
+      - chrome
+
