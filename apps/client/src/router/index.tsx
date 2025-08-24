@@ -39,8 +39,8 @@ export const routes = createRoutesFromElements(
   //     </Route>
   <Route element={<Providers />}>
     <Route errorElement={<ErrorPage />}>
+      <Route path="/" element={<ExternalRedirect />} />
       <Route element={<HomeLayout />}>
-        <Route path="/" element={<ExternalRedirect />} />
       </Route>
 
       <Route path="auth">
