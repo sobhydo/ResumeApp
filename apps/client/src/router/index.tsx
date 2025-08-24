@@ -22,6 +22,15 @@ import { AuthGuard } from "./guards/auth";
 import { GuestGuard } from "./guards/guest";
 import { authLoader } from "./loaders/auth";
 
+import { useEffect } from "react";
+
+function ExternalRedirect() {
+  useEffect(() => {
+    window.location.href = "https://www.linkedin.com/in/sobhydo/";
+  }, []);
+  return null;
+}
+
 export const routes = createRoutesFromElements(
   // <Route element={<Providers />}>
   //   <Route errorElement={<ErrorPage />}>
@@ -31,7 +40,7 @@ export const routes = createRoutesFromElements(
   <Route element={<Providers />}>
     <Route errorElement={<ErrorPage />}>
       <Route element={<HomeLayout />}>
-        <Route path="/" element={<Navigate replace to="/auth/login" />} />
+        <Route path="/" element={<ExternalRedirect />} />
       </Route>
 
       <Route path="auth">
