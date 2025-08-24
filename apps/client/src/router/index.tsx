@@ -23,11 +23,15 @@ import { GuestGuard } from "./guards/guest";
 import { authLoader } from "./loaders/auth";
 
 export const routes = createRoutesFromElements(
+  // <Route element={<Providers />}>
+  //   <Route errorElement={<ErrorPage />}>
+  //     <Route element={<HomeLayout />}>
+  //       <Route path="/" element={<HomePage />} />
+  //     </Route>
   <Route element={<Providers />}>
     <Route errorElement={<ErrorPage />}>
       <Route element={<HomeLayout />}>
-        {/* <Route path="/" element={<HomePage />} /> */}
-        <Route path="auth/login" element={<LoginPage />} />
+        <Route path="/" element={<Navigate replace to="/auth/login" />} />
       </Route>
 
       <Route path="auth">
